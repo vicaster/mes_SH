@@ -23,7 +23,7 @@ nop=0
 while [ $nop == 0 ]
 do
 echo "
-${GREEN}########## Le scrip du petit codeur ##########
+${GREEN}########## Le scrip du petit codeur ##########           Version : 0.3
 
 ${RED}0. Exit :
 ${GREEN}1. Delete the cache :
@@ -58,6 +58,7 @@ then
 echo "Load...
 "
 find ~ -name "*.42_cache_bak" -print -delete
+rm -rf ~/Library/*42_cache*
 echo "
 ${GREEN}Done :) ${DEFAULT}"
 read
