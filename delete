@@ -1,0 +1,5 @@
+find ~ -name "a.out" -delete
+find ~ -name ".DS_Store" -delete
+find ~ -name "*.o" -delete
+find ~ -name ".cocoapods.42_cache_bak_*" -delete
+find ~ -name "*.dSYM" -delete

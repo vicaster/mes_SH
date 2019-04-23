@@ -22,152 +22,312 @@ clear
 nop=0
 while [ $nop == 0 ]
 do
-echo "
-${GREEN}########## Le scrip du petit codeur ##########           Version : 0.3
+	echo "
+${GREEN}########## Le scrip du petit codeur ##########           Version : 0.5.2
 
-${RED}0. Exit :
+${RED}0. Exit :                                                  Dev_mode: ${PURPLE}dev
 ${GREEN}1. Delete the cache :
-${YELLOW}2. Push :
-${CYAN}3. Run 42sh :
-${GREEN}4. Who is your best friend ?
-${YELLOW}5. Kill bad files :
-${CYAN}6. Joue avec moi :${DEFAULT}
+${CYAN}2. Kill bad files :
+${YELLOW}3. Push :
+${GREEN}4. Run 42sh :
+${CYAN}5. Who is your best friend ?
+${YELLOW}6. Joue avec moi :
+${GREEN}7. Shifumi :${DEFAULT}
 "
 
-read var
+	read var
 
-if [ $var -ne 0 ] && [ $var -ne 1 ] && [ $var -ne 2 ] && [ $var -ne 3 ] &&
-[ $var -ne 4 ] && [ $var -ne 5 ] && [ $var -ne 6 ] && [ $var -ne 101 ];
+	if [ $var -ne 0 ] && [ $var -ne 1 ] && [ $var -ne 2 ] && [ $var -ne 3 ] &&
+		[ $var -ne 4 ] && [ $var -ne 5 ] && [ $var -ne 6 ] && [ $var -ne 7 ] && [ $var -ne 101 ] && [ $var -ne 210419 ];
 then
-echo "${RED}Not a valide choice
+	echo "${RED}Not a valide choice
 
-${DEFAULT}See you."
-read
-clear
-break
+	${DEFAULT}See you."
+	say -v thomas "bye"
+	read
+	clear
+	break
 fi
 
 if [ $var == 0 ];
 then
-echo "${GREEN}See you${DEFAULT}"
-clear
-exit 0
+	echo "${GREEN}See you${DEFAULT}"
+	say -v thomas "Bonne journee"
+	clear
+	exit 0
 
-elif [ $var -eq 1 ];
+elif [ $var -eq 210419 ];
 then
-echo "Load...
-"
-find ~ -name "*.42_cache_bak" -print -delete
-rm -rf ~/Library/*42_cache*
-echo "
-${GREEN}Done :) ${DEFAULT}"
-read
-clear
+	echo "${RED}                       .-~-."
+	echo "                     .'     '."
+	echo "                    /         \\ "
+	echo " ${GREEN}           .-~-.  ${RED}:           ;"
+	echo " ${GREEN}         .'     '.${RED}|           |"
+	echo " ${GREEN}        /         \\ ${RED}          :"
+	echo " ${GREEN}       :           ; ${YELLOW}.-~\"\"~-,${RED}/"
+	echo " ${GREEN}       |           ${YELLOW}/          '."
+	echo " ${GREEN}       :          ${YELLOW}|             \\ "
+	echo " ${GREEN}        \\         ${YELLOW}|             /"
+	echo " ${GREEN}         '.     .' ${YELLOW}\\          .'"
+	echo "     vic ${GREEN}   '~~~'    ${YELLOW}'-.____.-'"
+	read
+	clear
 
-elif [ $var -eq 2 ];
+elif [ $var == "dev" ];
 then
-read -p "entrer le chemin a partir de ce repertoir: " path
-cd $path
-git add .
-git commit -m "${GREEN}done${DEFAULT}"
-git push
-echo "
-${GREEN}Push Done${DEFAULT}
+	vim ~/petit_codeur
+	clear
 
-ls-files :
-"
-git ls-files
-echo "
-${GREEN}Done${DEFAULT}"
-
-read
-clear
-
-elif [ $var -eq 3 ];
+elif [ $var -eq 1 ];#DELETE THE CACHE
 then
-sh ~/42FileChecker/42FileChecker.sh
-read
-clear
+	echo "Load...
+	"
+	find ~ -name "*.42_cache_bak" -print -delete
+	rm -rf ~/Library/*42_cache*
+	echo "
+	${GREEN}Done :) ${DEFAULT}"
+	read
+	clear
 
-elif [ $var -eq 4 ];
+elif [ $var -eq 3 ];#PUSH
 then
-open https://www.google.fr
-read
-clear
+	read -p "Entrer le chemin a partir de ce repertoir: 
+(Il est conseiller de lancer le push depuis '.' pour plus de facilite)
 
-elif [ $var -eq 5 ];
+" path
+	cd $path
+	git add .
+	git commit -m "${GREEN}done${DEFAULT}"
+	git push
+	echo "
+	${GREEN}Push Done${DEFAULT}
+
+	ls-files :
+	"
+	git ls-files
+	echo "
+	${GREEN}Done${DEFAULT}"
+	read
+	clear
+
+elif [ $var -eq 4 ];#RUN 42FILECHECKER
 then
-find ~ -name "*.dSYM" -print -delete | find ~ -name 'a.out' -print -delete | find ~ -name '.DS_Store' -print -delete | find ~ -name '*.gch' -delete
-echo "
-${GREEN}Kill done.${DEFAULT}"
-read
-clear
+	git clone https://github.com/jgigault/42FileChecker ~/42FileChecker
+	sh ~/42FileChecker/42FileChecker.sh
+	clear
+
+elif [ $var -eq 5 ];#OPEN GOOGLE (who is your best friend?)
+then
+	open https://www.google.fr
+	read
+	clear
+
+elif [ $var -eq 2 ];#KILL BAD FILES
+then
+	find ~ -name "*.dSYM" -print -delete | find ~ -name 'a.out' -print -delete | find ~ -name '.DS_Store' -print -delete | find ~ -name '*.gch' -delete
+	echo "
+	${GREEN}Kill done.${DEFAULT}"
+	read
+	clear
 
 elif [ $var -eq 6 ];
 then
 
-####################GAME############################
-win=0
-let nb_myst="$RANDOM %100 + 0"
-nb_try=10
-while [ $nb_try -gt 0 ]
-do
-echo "Choisi un nombre entre 0 et 100 :  "
-read try
+	####################GAME############################
+	win=0
+	let nb_myst="$RANDOM %1000 + 0"
+	nb_try=10
+	while [ $nb_try -gt 0 ]
+	do
+		echo "${YELLOW}Choisi un nombre entre 0 et 1000 :  ${DEFAULT}"
+		read try
 
-if [ $try == "quit" ];
-then
-nb_try=10
-break
-fi
+		if [ $try == "quit" ];
+		then
+			nb_try=10
+			break
+		fi
 
-if [ $try -lt 0 ] || [ $try -gt 100 ];
-then
-echo "${RED}entre 0 et 100, lis les consignes..${DEFAULT}"
-elif [ $try -ge 0 ] && [ $try -le 100 ];
-then
-if [ $try -gt $nb_myst ];
-then
-echo "Le nombre est plus petit."
-let nb_try="$nb_try - 1"
-echo "il te reste $nb_try essais.
+		if [ $try -lt 0 ] || [ $try -gt 1000 ];
+		then
+			echo "${RED}entre 0 et 1000, lis les consignes..${DEFAULT}"
+		elif [ $try -ge 0 ] && [ $try -le 1000 ];
+		then
+			if [ $try -gt $nb_myst ];
+			then
+				echo "${CYAN}Le nombre est plus petit.${DEFAULT}"
+				let nb_try="$nb_try - 1"
+				echo "${RED}il te reste $nb_try essais.${DEFAULT}
+				"
+			elif [ $try -lt $nb_myst ];
+			then
+				echo "${CYAN}Le nombre est plus grand.${DEFAULT}"
+				let nb_try="$nb_try - 1"
+				echo "${RED}il te reste $nb_try essais.${DEFAULT}
+				"
+			else [ $try=$nb_myst ]
+				echo "${GREEN}You Win Dude! Le nombre etait bien $nb_myst!${DEFAULT}"
+				win=101
+				nb_try=10
+				break
+			fi
+
+		else
+			echo "il te reste $nb_try essais.
 "
-elif [ $try -lt $nb_myst ];
-then
-echo "Le nombre est plus grand."
-let nb_try="$nb_try - 1"
-echo "il te reste $nb_try essais.
-"
-else [ $try=$nb_myst ]
-echo "${GREEN}You Win Dude! Le nombre etait bien $nb_myst!${DEFAULT}"
-win=101
-nb_try=10
-break
-fi
+		fi
 
-else
-echo "il te reste $nb_try essais.
-"
-fi
-
-done
-if [ $win -ne 101 ];
-then
-echo "${RED}T'as perdu! Il fallait trouver:${DEFAULT} $nb_myst"
-fi
-nb_try=10
-read
-clear
-####################END GAME############################
+	done
+	if [ $win -ne 101 ];
+	then
+		echo "${RED}T'as perdu! Il fallait trouver:${DEFAULT} $nb_myst"
+	fi
+	nb_try=10
+	read
+	clear
+	####################END GAME############################
 elif [ $var -eq 101 ];
 then
-open https://www.le-101.fr
-clear
+	open https://www.le-101.fr
+	clear
+
+elif [  $var -eq 7 ];
+then
+#######################SHIFUMI#########################
+	clear
+
+	while [ 1 ]
+	do
+		clear
+		echo "${CYAN}#############################################
+#                  SHIFUMI                  #
+#############################################${DEFAULT}
+
+${RED}${UNDERLINE}MODE:${DEFAULT}
+
+
+${RED}
+0.	EXIT${YELLOW}
+
+1.	NEW GAME${DEFAULT}
+
+
+"
+		read mode
+
+		if [ $mode -ne 0 ] && [ $mode -ne 1 ];
+		then
+			echo "${RED}Not a valide choice
+
+	${GREEN}See you.${DEFAULT}"
+			#		say "see you"
+			clear
+			break
+		fi
+
+		if [ $mode -eq 0 ];
+		then
+			echo "${CYAN}See you.${DEFAULT}"
+			#		say "see you"
+			clear
+			break
+
+		elif [ $mode -eq 1 ];
+		then
+			count=0
+			pointmoi=0
+			pointbot=0
+			while [ 1 ]
+			do
+				let nb="$RANDOM %3 + 1"
+				clear
+				echo "${CYAN}      #############################################
+      #                 SHIFUMI                   #
+      #############################################${DEFAULT}
+
+
+				${UNDERLINE}${YELLOW}ROUND:${DEFAULT} $count ${RED}
+0.exit${DEFAULT}						${RED}Points:${DEFAULT} Moi: $pointmoi
+							Bot: $pointbot
+${BLUE}${UNDERLINE}CHOOSE:${DEFAULT}
+
+1.pierre
+2.feuille
+3.ciseau
+
+"
+				read var
+
+				if [ $var == 0 ];
+				then
+					count=1
+					break
+				fi
+
+				if [ $nb -eq 1 ];
+				then
+					bot="pierre"
+				elif [ $nb -eq 2 ];
+				then
+					bot="feuille"
+				elif [ $nb -eq 3 ];
+				then
+					bot="ciseau"
+				fi
+
+				if [ $var -eq 1 ];
+				then
+					vari="pierre"
+				elif [ $var -eq 2 ];
+				then
+					vari="feuille"
+				elif [ $var -eq 3 ];
+				then
+					vari="ciseau"
+				fi
+
+				if [ $var == 1 ] || [ $var == 2 ] || [ $var == 3 ];
+				then
+					echo "
+
+		${RED} ------>BATTLE<------${DEFAULT}
+
+	  Moi: $vari    VS    Bot: $bot
+"
+					let count="$count + 1"
+
+					if [ $bot == "pierre" ] && [ $vari == "feuille" ];
+					then
+						let pointmoi="$pointmoi + 1"
+					elif [ $bot == "feuille" ] && [ $vari == "ciseau" ];
+					then
+						let pointmoi="$pointmoi + 1"
+					elif [ $bot == "ciseau" ] && [ $vari == "pierre" ];
+					then
+						let pointmoi="$pointmoi + 1"
+					elif [ $vari == "pierre" ] && [ $bot == "feuille" ];
+					then
+						let pointbot="$pointbot + 1"
+					elif [ $vari == "feuille" ] && [ $bot == "ciseau" ];
+					then
+						let pointbot="$pointbot + 1"
+					elif [ $vari == "ciseau" ] && [ $bot == "pierre" ];
+					then
+						let pointbot="$pointbot + 1"
+					fi
+					echo ""
+					read
+				fi
+			done
+		fi
+	done
+#########################END SHIFUMI##############################
+#	clear
 
 else
-echo "${RED}WHUUUT??${DEFAULT}"
-read
-clear
+	echo "${RED}WHUUUT??${DEFAULT}"
+	read
+	clear
 fi
 
 done
