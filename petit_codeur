@@ -23,7 +23,7 @@ nop=0
 while [ $nop == 0 ]
 do
 	echo "
-${GREEN}########## Le scrip du petit codeur ##########           Version : 0.5.2
+${GREEN}########## Le scrip du petit codeur ##########           Version : 1.0.0
 
 ${RED}0. Exit :                                                  Dev_mode: ${PURPLE}dev
 ${GREEN}1. Delete the cache :
@@ -32,18 +32,20 @@ ${YELLOW}3. Push :
 ${GREEN}4. Run 42sh :
 ${CYAN}5. Who is your best friend ?
 ${YELLOW}6. Joue avec moi :
-${GREEN}7. Shifumi :${DEFAULT}
-"
+${GREEN}7. Shifumi :
+${CYAN}8. Backup :
+${DEFAULT}"
 
 	read var
 
 	if [ $var -ne 0 ] && [ $var -ne 1 ] && [ $var -ne 2 ] && [ $var -ne 3 ] &&
-		[ $var -ne 4 ] && [ $var -ne 5 ] && [ $var -ne 6 ] && [ $var -ne 7 ] && [ $var -ne 101 ] && [ $var -ne 210419 ];
+		[ $var -ne 4 ] && [ $var -ne 5 ] && [ $var -ne 6 ] && [ $var -ne 7 ] &&
+		[$var -ne 8 ] && [ $var -ne 101 ] && [ $var -ne 210419 ];
 then
 	echo "${RED}Not a valide choice
 
 	${DEFAULT}See you."
-	say -v thomas "bye"
+#	say -v thomas "bye"
 	read
 	clear
 	break
@@ -52,7 +54,7 @@ fi
 if [ $var == 0 ];
 then
 	echo "${GREEN}See you${DEFAULT}"
-	say -v thomas "Bonne journee"
+#	say -v thomas "Bonne journee"
 	clear
 	exit 0
 
@@ -128,6 +130,11 @@ then
 	echo "
 	${GREEN}Kill done.${DEFAULT}"
 	read
+	clear
+
+elif [ $var -eq 8 ];#BACKUP
+then
+	sh ~/Backup
 	clear
 
 elif [ $var -eq 6 ];
