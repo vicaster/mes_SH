@@ -1,0 +1,89 @@
+#!/bin/bash
+
+##############################################################################
+##								COULEURS	                                ##
+##############################################################################
+
+DEFAULT="\033[0m"
+HIGHLIGHT="\033[1m"
+UNDERLINE="\033[4m"
+BLINK="\033[5m"
+BLACK="\033[30m"
+RED="\033[31m"
+GREEN="\033[32m"
+YELLOW="\033[33m"
+BLUE="\033[34m"
+PURPLE="\033[35m"
+CYAN="\033[36m"
+WHITE="\033[37m"
+
+##############################################################################
+
+clear
+project="0"
+path=$(pwd)
+echo "${YELLOW}
+						#############################################################################
+						#${RED}   (                             )   )        (              ) (           ${YELLOW}#
+						#${RED}   )\ )   (                   ( /(( /(        )\ )     (  ( /( )\ )        ${YELLOW}#
+						#${RED}  (()/(   )\    (   (  (      )\())\())    ( (()/(     )\ )\()|()/(  (     ${YELLOW}#
+						#${RED}   /(_)|(((_)(  )\  )\ )\    ((_)((_)\     )\ /(_))  (((_|(_)\ /(_)) )\    ${YELLOW}#
+						#${RED}  (_))  )\ _ )\((_)((_|(_)  __ ((_)((_) _ ((_|_))    )\___ ((_|_))_ ((_)   ${YELLOW}#
+						#${RED}  / __| (_)_\(_) \ / /| __| \ \ / / _ \| | | | _ \  ((/ __/ _ \|   \| __|  ${YELLOW}#
+						#${RED}  \__ \  / _ \  \ V / | _|   \ V / (_) | |_| |   /   | (_| (_) | |) | _|   ${YELLOW}#
+						#${RED}  |___/ /_/ \_\  \_/  |___|   |_| \___/ \___/|_|_\    \___\___/|___/|___|  ${YELLOW}#
+						#                                                                           #
+						#############################################################################
+
+${RED}
+ ▄▄ █    ▄   ▄███▄   █         █ ▄▄  █▄▄▄▄ ████▄   ▄▄▄▄▄ ▄███▄     ▄▄▄▄▀         ▄   ▄███▄     ▄       ▄         ▄▄▄▄▀ ▄          ▄▄▄▄▄   ██     ▄       ▄   ▄███▄   █▄▄▄▄
+█   █     █  █▀   ▀  █         █   █ █  ▄▀ █   █ ▄▀  █   █▀   ▀ ▀▀▀ █             █  █▀   ▀     █  ▀▄   █     ▀▀▀ █     █        █     ▀▄ █ █     █       █  █▀   ▀  █  ▄▀
+ ▀▀▀█  █   █ ██▄▄    █         █▀▀▀  █▀▀▌  █   █     █   ██▄▄       █        █     █ ██▄▄    █   █   █ ▀          █  █   █     ▄  ▀▀▀▀▄   █▄▄█ █   █ █     █ ██▄▄    █▀▀▌
+    █  █   █ █▄   ▄▀ ███▄      █     █  █  ▀████  ▄ █    █▄   ▄▀   █          █    █ █▄   ▄▀ █   █  ▄ █          █   █   █      ▀▄▄▄▄▀    █  █ █   █  █    █ █▄   ▄▀ █  █
+     █ █▄ ▄█ ▀███▀       ▀      █      █           ▀     ▀███▀    ▀            █  █  ▀███▀   █▄ ▄█ █   ▀▄       ▀    █▄ ▄█                   █ █▄ ▄█   █  █  ▀███▀     █
+      ▀ ▀▀▀                      ▀    ▀                                         █▐            ▀▀▀   ▀                 ▀▀▀                   █   ▀▀▀     █▐            ▀
+
+                                                                                ▐                                                          ▀            ▐
+${YELLOW}
+                                                                                                                                                               DEV"
+ls ~/Desktop/101 | grep -v ".c"
+echo "${DEFAULT}"
+read project
+
+if [ $project == "dev" ];
+then
+	vim ~/petit_codeur/srcs/Backup
+fi
+
+if [ -e ~/Desktop/101/${project} ];
+then
+	if ! [ -e ~/Desktop/vicaster/${project} ];
+	then
+		cd ~/Desktop/vicaster
+		mkdir ${project}
+	fi
+	echo "
+cd ~/Desktop/101/${project}
+cp -R `ls` ~/Desktop/vicaster/${project}"
+	cd ~/Desktop/101/${project}
+	cp -R `ls` ~/Desktop/vicaster/${project}
+	echo "
+${GREEN}~~~~~~~copy done~~~~~~~${DEFAULT}
+"
+	cd ~/Desktop/vicaster/${project}
+	if [ -e ~/Desktop/101/${project}/Makefile ];
+	then
+		make fclean
+	fi
+	cd ~/Desktop/vicaster
+	git add . && git commit -m "done " && git push
+	cd ${path}
+	echo "
+	${GREEN}FINISH${DEFAULT}"
+	read
+
+else
+	echo "
+${RED}NOT FOUND${DEFAULT}"
+	read
+fi

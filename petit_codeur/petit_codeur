@@ -25,22 +25,25 @@ do
 	echo "
 ${GREEN}########## Le scrip du petit codeur ##########           Version : 1.0.0
 
-${RED}0. Exit :                                                  Dev_mode: ${PURPLE}dev
-${GREEN}1. Delete the cache :
-${CYAN}2. Kill bad files :
-${YELLOW}3. Push :
-${GREEN}4. Run 42sh :
-${CYAN}5. Who is your best friend ?
-${YELLOW}6. Joue avec moi :
-${GREEN}7. Shifumi :
-${CYAN}8. Backup :
+${RED}0.  Exit :                                                  Dev_mode: ${PURPLE}dev
+${GREEN}1.  Delete the cache :
+${CYAN}2.  Kill bad files :
+${YELLOW}3.  Push :
+${GREEN}4.  Run 42sh :
+${CYAN}5.  Who is your best friend ?
+${YELLOW}6.  Joue avec moi :
+${GREEN}7.  Shifumi :
+${CYAN}8.  Backup :
+${YELLOW}9.  Matrix :
+${GREEN}10. Travail :
 ${DEFAULT}"
 
 	read var
 
 	if [ $var -ne 0 ] && [ $var -ne 1 ] && [ $var -ne 2 ] && [ $var -ne 3 ] &&
 		[ $var -ne 4 ] && [ $var -ne 5 ] && [ $var -ne 6 ] && [ $var -ne 7 ] &&
-		[$var -ne 8 ] && [ $var -ne 101 ] && [ $var -ne 210419 ];
+		[ $var -ne 8 ] && [ $var -ne 9 ] && [ $var -ne 10 ] && [ $var -ne 101 ] &&
+		[ $var -ne 210419 ];
 then
 	echo "${RED}Not a valide choice
 
@@ -51,14 +54,14 @@ then
 	break
 fi
 
-if [ $var == 0 ];
+if [ $var == 0 ];###############################################  EXIT
 then
 	echo "${GREEN}See you${DEFAULT}"
 #	say -v thomas "Bonne journee"
 	clear
 	exit 0
 
-elif [ $var -eq 210419 ];
+elif [ $var -eq 210419 ];###############################################  EASTER EGG
 then
 	echo "${RED}                       .-~-."
 	echo "                     .'     '."
@@ -75,12 +78,12 @@ then
 	read
 	clear
 
-elif [ $var == "dev" ];
+elif [ $var == "dev" ];###########################################  DEV
 then
-	vim ~/petit_codeur
+	vim ~/petit_codeur/petit_codeur
 	clear
 
-elif [ $var -eq 1 ];#DELETE THE CACHE
+elif [ $var -eq 1 ];############################################  DELETE THE CACHE
 then
 	echo "Load...
 	"
@@ -91,7 +94,7 @@ then
 	read
 	clear
 
-elif [ $var -eq 3 ];#PUSH
+elif [ $var -eq 3 ];#############################################  PUSH
 then
 	read -p "Entrer le chemin a partir de ce repertoir: 
 (Il est conseiller de lancer le push depuis '.' pour plus de facilite)
@@ -112,19 +115,19 @@ then
 	read
 	clear
 
-elif [ $var -eq 4 ];#RUN 42FILECHECKER
+elif [ $var -eq 4 ];#############################################  RUN 42FILECHECKER
 then
 	git clone https://github.com/jgigault/42FileChecker ~/42FileChecker
 	sh ~/42FileChecker/42FileChecker.sh
 	clear
 
-elif [ $var -eq 5 ];#OPEN GOOGLE (who is your best friend?)
+elif [ $var -eq 5 ];#############################################  OPEN GOOGLE (who is your best friend?)
 then
 	open https://www.google.fr
 	read
 	clear
 
-elif [ $var -eq 2 ];#KILL BAD FILES
+elif [ $var -eq 2 ];#############################################  KILL BAD FILES
 then
 	find ~ -name "*.dSYM" -print -delete | find ~ -name 'a.out' -print -delete | find ~ -name '.DS_Store' -print -delete | find ~ -name '*.gch' -delete
 	echo "
@@ -132,15 +135,23 @@ then
 	read
 	clear
 
-elif [ $var -eq 8 ];#BACKUP
+elif [ $var -eq 8 ];#############################################  BACKUP
 then
-	sh ~/Backup
+	sh ~/petit_codeur/srcs/Backup
 	clear
+
+elif [ $var -eq 9 ];############################################  MATRIX
+then
+	/Users/vicaster/petit_codeur/srcs/binary
+
+elif [ $var -eq 10 ];##########################################  TRAVAIL
+then
+	/Users/vicaster/petit_codeur/srcs/a.travail
 
 elif [ $var -eq 6 ];
 then
 
-	####################GAME############################
+	#########################GAME############################
 	win=0
 	let nb_myst="$RANDOM %1000 + 0"
 	nb_try=10
