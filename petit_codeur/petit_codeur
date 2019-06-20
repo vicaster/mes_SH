@@ -23,7 +23,7 @@ nop=0
 while [ $nop == 0 ]
 do
 	echo "
-${GREEN}########## Le scrip du petit codeur ##########           Version : 1.0.0
+${GREEN}########## Le scrip du petit codeur ##########           Version : 1.0.1
 
 ${RED}0.  Exit :                                                  Dev_mode: ${PURPLE}dev
 ${GREEN}1.  Delete the cache :
@@ -89,6 +89,7 @@ then
 	"
 	find ~ -name "*.42_cache_bak" -print -delete
 	rm -rf ~/Library/*42_cache*
+	rm -rf ~/.cocoapods.42_cache* ~/.zcompdump-*
 	echo "
 	${GREEN}Done :) ${DEFAULT}"
 	read
