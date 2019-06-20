@@ -1,0 +1,15 @@
+############################################################
+#                                                          #
+#  To use it write on terminal: cmatrix                    #
+#                                                          #
+#                                  by: vicaster            #
+############################################################
+
+
+brew install cmatrix
+brew install homebrew/homebrew-core/screen
+echo "blankerprg cmatrix -ab
+idle 15 blanker" > ~/.screenrc
+
+
+# if you want to stop it put "15 blanker" at "-1 blanker"
