@@ -1,0 +1,4 @@
+alias push="sh ~/push.sh"
+alias del="/Users/vicaster/delete"
+alias src="source ~/.zshrc"
+alias codeur="sh ~/petit_codeur/petit_codeur"
