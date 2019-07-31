@@ -2,7 +2,7 @@ Pour le bon fonctionnement de ce script:
 
 ---------------------------------------------------
 
-1- Mettre le script a la racine "~"
+1- Mettre le script "push.sh" a la racine "~"
 
 ---------------------------------------------------
 
