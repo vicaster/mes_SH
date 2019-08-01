@@ -19,3 +19,9 @@ une fois la commande echo faite, il faut fermer le shell et en rouvrir un.
 
 Maintenant il suffis de faire: "push" dans le repo du .git pour l'utiliser.
 Bon push.
+
+
+---------------------------------------------------
+
+
+SINON: sh deploiement.sh
