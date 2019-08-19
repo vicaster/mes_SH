@@ -45,14 +45,33 @@ ${RED}
 
                                                                                 ▐                                                          ▀            ▐
 ${YELLOW}
-                                                                                                                                                               DEV"
+                                                                                                                                                               DEV
+						${DEFAULT}${UNDERLINE}ecrir: ${GREEN}\"q\"${DEFAULT}${UNDERLINE} ou ${GREEN}\"quit\"${DEFAULT}${UNDERLINE} pour quitter.${DEFAULT}
+"
+
+## CHEMIN VERS LE REPO DE TRAVAIL ##
+##		|						  ##
+##		V						  ##
 ls ~/Desktop/101 | grep -v ".c"
 echo "${DEFAULT}"
 read project
 
+while [ -z "$project" ]
+do
+	echo "${RED}Nothing is write..${DEFAULT}	
+	"
+	read project
+done
+
+if [ $project == "q" ] || [ $project == "quit" ];
+then
+	exit
+fi
+
 if [ $project == "dev" ];
 then
 	vim ~/petit_codeur/srcs/Backup
+	exit
 fi
 
 if [ -e ~/Desktop/101/${project} ];

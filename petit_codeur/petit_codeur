@@ -35,24 +35,42 @@ ${YELLOW}6.  Joue avec moi :
 ${GREEN}7.  Shifumi :
 ${CYAN}8.  Backup :
 ${YELLOW}9.  Matrix :
-${GREEN}10. Travail :
+${GREEN}10. 1100101 :
 ${DEFAULT}"
 
 	read var
 
+if ! [[ "$var" =~ ^[0-9]+$ ]] && [[ $var != "dev" ]]
+then
+	if [[ -z $var ]]
+	then
+		echo "${RED}
+Empty var${DEFAULT}
+"
+	read
+	clear
+	elif ! [[ "$var" =~ ^[0-9]+$ ]] && [[ $var != "dev" ]]
+	then
+		echo "${RED}
+Only integer${DEFAULT}
+"
+		read
+		clear
+	fi
+else
 	if [ $var -ne 0 ] && [ $var -ne 1 ] && [ $var -ne 2 ] && [ $var -ne 3 ] &&
 		[ $var -ne 4 ] && [ $var -ne 5 ] && [ $var -ne 6 ] && [ $var -ne 7 ] &&
 		[ $var -ne 8 ] && [ $var -ne 9 ] && [ $var -ne 10 ] && [ $var -ne 101 ] &&
 		[ $var -ne 210419 ];
-then
-	echo "${RED}Not a valide choice
+	then
+		echo "${RED}Not a valide choice
 
 	${DEFAULT}See you."
 #	say -v thomas "bye"
 	read
 	clear
 	break
-fi
+	fi
 
 if [ $var == 0 ];###############################################  EXIT
 then
@@ -145,9 +163,9 @@ elif [ $var -eq 9 ];############################################  MATRIX
 then
 	/Users/vicaster/petit_codeur/srcs/binary
 
-elif [ $var -eq 10 ];##########################################  TRAVAIL
+elif [ $var -eq 10 ];##########################################  1100101
 then
-	/Users/vicaster/petit_codeur/srcs/a.travail
+	/Users/vicaster/petit_codeur/srcs/1100101
 
 elif [ $var -eq 6 ];
 then
@@ -347,6 +365,7 @@ else
 	echo "${RED}WHUUUT??${DEFAULT}"
 	read
 	clear
+fi
 fi
 
 done
